@@ -1,56 +1,31 @@
-#include <iostream>
-
-using namespace std;
-
-
-class Node {
-    public:
-
-    int data ;
-Node * next ;
-
-Node(){
-    this->data = 0 ;
-    this ->next = NULL;
-
-}
-
-Node (int data){
-    this ->data  = data;
-    this -> next = NULL;
-
-}
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        if(head==NULL){
+            return head;
+        }
+        if(head->next ==NULL ){
+            return head;
+        }
+        ListNode* fast = head;
+        ListNode*slow = head;
+        while(fast != NULL && slow != NULL){
+            fast = fast->next;
+            if(fast != NULL){
+                fast = fast -> next;
+                slow = slow-> next;
+            }
+        }
+        return slow;
+    }
 };
-
-
-void print(Node * head){
-     Node * temp = head ;
-     while (temp != NULL){
-        cout<<temp->data<<" ";
-        temp = temp->next;
-     }
-}
-
-
-int main (){
-
-Node *first = new  Node(10);
-Node *second = new  Node(20);
-Node *third = new  Node();
-Node *fourth = new  Node();
-Node *fifth  = new  Node();
-
-first ->next = second ;
-second ->next = third;
-third->next = fourth;
-fourth ->next = fifth ;
-
-
-cout<<"Printing  the LL "<<endl; 
-
-print(first);
-
-return 0;
-
-
-}
